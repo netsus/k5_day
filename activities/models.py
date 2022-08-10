@@ -17,7 +17,6 @@ class Activity(models.Model):
     liked_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name="liked_activity_set"
     )
-    participants = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
