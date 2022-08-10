@@ -6,17 +6,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amazing Django!</title>
+    <title>K5 Day</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
+<div class="container h-100">
     <nav class="navbar navbar-expand-lg navbar-light">
             <a href="{% url 'root' %}" class="navbar-brand">
                 <i class="fa-brands fa-python text-primary me-1"></i>
-                <B>Django is Amazing!</B>
+                <B>K5 Day</B>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -42,7 +47,7 @@
             </div>
         </nav>
         <hr>
-        <div class="card">
+        <div class="card h-75">
             <div class="card-body">
                 {% block content %}
                 {% endblock %}

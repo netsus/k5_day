@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+    <div class="row row-cols-2 h-100">
+        <div class="col-4">
+            {% for photo in activity.get_all_photos  %}
+            <div
+                    style="background-image:url({{photo.file.url}});background-size: cover"
+                    class="w-100 h-100 border"></div>
+        {% endfor %}
+        </div>
+        <div class="col-7">
+
+        </div>
+    </div>
+{% endblock %}

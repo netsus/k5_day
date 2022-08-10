@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <div class="row row-cols-3 h-100">
+    {% for activity in activities %}
+        <div class="col mb-1">
+        <div class="h-100 img-fluid img-thumbnail d-flex align-items-center justify-content-center " style="background-image: url({{ activity.first_photo }}); background-size: cover">
+            <div class="text-white d-flex-inline text-center">
+            <h5 class="d-inline-block card-title bg-dark bg-opacity-75">{{ activity.title }}</h5>
+            <a href="{% url "activities:detail" activity.pk %}" class="btn btn-outline-light">Button</a>
+          </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
