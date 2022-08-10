@@ -8,9 +8,12 @@ class User(AbstractUser):
     """ Custom User Model """
     MALE = "male"
     FEMALE = "female"
-    CHOICES = (
+    GENDER_CHOICES = (
         (MALE, _("Male")),
         (FEMALE, _("Female")),
+    )
+    gender = models.CharField(
+        _("gender"), choices=GENDER_CHOICES, max_length=10, blank=True
     )
     birthdate = models.DateField(_("birthdate"), blank=True, null=True)
     activity_master = models.BooleanField(default=False)

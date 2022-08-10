@@ -23,7 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("activities/", include("activities.urls")),
-    # path("", RedirectView.as_view(pattern_name="catube:video_list"), name="root"),
+    path("", RedirectView.as_view(pattern_name="accounts:profile"), name="root"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
