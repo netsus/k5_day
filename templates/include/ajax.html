@@ -1,0 +1,27 @@
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+        function post_like(id) {
+            console.log("hi")
+            $.ajax({
+                url: "{%url 'activities:likes' activity.pk%}", // data를 전송할 url 입니다.
+                data: {
+                    'activity_id': id
+                }, // activity_id 라는 name으로 id 값 전송
+                dataType: "json",
+                success: function (response) { // ajax 통신이 정상적으로 완료되었을 때
+                    $('#like_count').html(response.like_count) //id가 like_count의 내용을 전송받은 좋아요 수로 바꾼다
+                    if (response.message == "good")
+                    //좋아요 눌렀을 때
+                    {
+                        $('#heart_btn').attr("class", "btn-outline-danger rounded")
+                        $('#heart').attr("class", "fas fa-heart")
+                    } else if (response.message == "notgood")
+                    //좋아요 상태에서 다시 눌렀을 때
+                    {
+                        $('#heart_btn').attr("class", "btn-outline rounded")
+                        $('#heart').attr("class", "far fa-heart")
+                    }
+                }
+            })
+        }
+    </script>

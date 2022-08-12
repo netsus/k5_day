@@ -1,5 +1,7 @@
+import json
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, resolve_url
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -97,3 +99,20 @@ class CommentDeleteView(UserPassesTestMixin, DeleteView):
 
     def get_success_url(self):
         return resolve_url("activities:detail", self.kwargs["activity_pk"])
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+@login_required()
+def likes(request, activity_pk):
+    if is_ajax(request):
+        activity = Activity.objects.get(id=activity_pk)
+        user = request.user
+        if activity.liked_user_set.filter(id = user.id).exists():
+            activity.liked_user_set.remove(user)
+            message="notgood"
+        else:
+            activity.liked_user_set.add(user)
+            message="good"
+        context={'like_count':activity.liked_user_set.count(),
+                 'message':message}
+        return HttpResponse(json.dumps(context), content_type="application/json")

@@ -17,7 +17,7 @@ class Activity(models.Model):
     description=models.TextField()
     master=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     liked_user_set = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, blank=True, related_name="liked_activity_set"
+        settings.AUTH_USER_MODEL, blank=True, related_name="likes"
     )
 
     class Meta:
