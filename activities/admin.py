@@ -25,3 +25,15 @@ class PhotoAdmin(admin.ModelAdmin):
         return mark_safe(f"<img width='150px' src='{obj.file.url}' />")
 
     get_thumbnail.short_description = "Thumbnail"
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    """ Comment Admin Definition """
+    pass
+
+@admin.register(models.Registration)
+class RegistrationAdmin(admin.ModelAdmin):
+
+    """ Registration Admin Definition"""
+    pass

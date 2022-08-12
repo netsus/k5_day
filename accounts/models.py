@@ -16,9 +16,8 @@ class User(AbstractUser):
         _("gender"), choices=GENDER_CHOICES, max_length=10, blank=True
     )
     birthdate = models.DateField(_("birthdate"), blank=True, null=True)
-    activity_master = models.BooleanField(default=False)
     participated_activity = models.ForeignKey(
-        "activities.Activity", related_name="activities", null=True, on_delete=models.DO_NOTHING
+        "activities.Activity", related_name="activities", null=True,blank=True, on_delete=models.DO_NOTHING
     )
 
     def get_absolute_url(self):

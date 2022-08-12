@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import get_user_model
+from django.template.defaulttags import url
 from django.urls import path, include
 from django.views.generic import RedirectView
 
@@ -24,7 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("activities/", include("activities.urls")),
-    # path("", RedirectView.as_view(pattern_name="activities:list"), name="root"),
+    path("", RedirectView.as_view(pattern_name="activities:list"), name="root"),
     # DRF
     # path('api-auth/', include('rest_framework.urls')),
 ]
@@ -52,4 +53,4 @@ router.register(r'users', UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-urlpatterns += [path('', include(router.urls))]
+urlpatterns += [path('api/', include(router.urls))]

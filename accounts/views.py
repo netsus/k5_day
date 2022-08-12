@@ -11,11 +11,11 @@ from accounts.forms import SignupForm, ProfileForm
 
 class SignupView(CreateView):
     form_class = SignupForm
-    template_name = "accounts/form.html"
+    template_name = "form.html"
     success_url = settings.LOGIN_URL
 
 class MyLoginView(LoginView):
-    template_name = "accounts/form.html"
+    template_name = "form.html"
 
 class MyLogoutView(LogoutView):
     next_page = settings.LOGIN_URL
@@ -25,7 +25,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProfileForm
-    template_name = "accounts/form.html"
+    template_name = "form.html"
     success_url = reverse_lazy("accounts:profile")
 
     def get_object(self, queryset=None):
