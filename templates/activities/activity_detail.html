@@ -7,11 +7,11 @@
         <div class="col-6">
             {% for photo in activity.get_all_photos  %}
             <div
-                    style="background-image:url({{photo.file.url}});background-size: cover"
+                    style="background-image:url({{photo.file.url}});background-size: cover;box-shadow:inset 0 0 0 150vw rgba(0,0,0,0.4);background-position-x: center;background-position-y: center;"
                     class="rounded w-100 h-100 d-flex flex-column align-items-center justify-content-between">
                     <div class="w-75 d-flex flex-row justify-content-between ml-2 mr-4">
                         <div class="d-flex-inline">
-                          <button id="heart_btn" onclick="post_like(this.id)" class="btn-outline rounded">
+                          <button id="heart_btn" onclick="post_like(this.id)" class="btn btn-dark rounded">
                                   {%if request.user in activity.liked_user_set.all%}
                                   <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
                                     <i id="heart" class="red-text fas fa-heart" style="color:red"></i>
@@ -22,11 +22,13 @@
                                   <span id="like_count">{{activity.liked_user_set.count}}</span>
                           </button>
                         </div>
-                        <div class="d-flex-inline bg-dark bg-opacity-75 text-white">현재인원 {{ registration_count.count|add:1 }}</div>
+                        <div class="d-flex text-white align-items-center">
+                            현재인원 {{ registration_count|add:1 }}
+                        </div>
                     </div>
                     <div class="text-white d-flex-inline text-center">
-                        <div>
-                            <h2 class="sd-inline-block card-title bg-dark bg-opacity-75 text-white">{{activity.title }}</h2>
+                        <div class= text-white">
+                            <h2 class="sd-inline-block card-title">{{activity.title }}</h2>
                             <i>by {{ activity.master }}</i>
                         </div>
                     </div>

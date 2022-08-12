@@ -13,13 +13,15 @@
                     if (response.message == "good")
                     //좋아요 눌렀을 때
                     {
-                        $('#heart_btn').attr("class", "btn-outline-danger rounded")
+                        $('#heart_btn').attr("class", "btn btn-dark rounded")
                         $('#heart').attr("class", "fas fa-heart")
+                        $('#heart').css("color", "red")
                     } else if (response.message == "notgood")
                     //좋아요 상태에서 다시 눌렀을 때
                     {
-                        $('#heart_btn').attr("class", "btn-outline rounded")
+                        $('#heart_btn').attr("class", "btn btn-dark rounded")
                         $('#heart').attr("class", "far fa-heart")
+                        $('#heart').css("color", "white")
                     }
                 }
             })

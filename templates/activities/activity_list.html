@@ -3,13 +3,15 @@
 
 {% block content %}
     <div class="row row-cols-3 h-100">
-    {% for activity in activities %}
+    {% for activity, regist_cnt in activities_regists %}
         <div class="col mb-1">
 {#            <h5 class="d-inline-block card-title bg-dark bg-opacity-75">{{ activity.title }}</h5>#}
             <a href="{% url "activities:detail" activity.pk %}">
-              <div class="h-100 img-fluid img-thumbnail d-flex align-items-center justify-content-center " style="background-image: url({{ activity.first_photo }}); background-size: cover">
+              <div class="h-100 img-fluid img-thumbnail d-flex align-items-center justify-content-center " style="background-image: url({{ activity.first_photo }}); background-size: cover;background-position-x: center;background-position-y: center;">
                 <div class="text-white d-flex-inline text-center">
                     <div>
+{#                        <div class="d-flex-inline bg-dark bg-opacity-75 text-white">현재인원 {{ regist_cnt|add:1 }}</div>#}
+{#                        <div class="d-flex-inline bg-dark bg-opacity-75 text-white">좋아요: {{activity.liked_user_set.count}}</div>#}
                         <h5 class="d-inline-block card-title bg-dark bg-opacity-75 text-white">{{activity.title }}</h5>
                     </div>
                 </div>
