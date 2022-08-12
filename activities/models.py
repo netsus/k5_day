@@ -29,7 +29,6 @@ class Activity(models.Model):
     def first_photo(self):
         try:
             (photo,) = self.photo_set.all()[:1]
-            print(photo)
             return photo.file.url
         except ValueError:
             return None

@@ -22,7 +22,7 @@
                                   <span id="like_count">{{activity.liked_user_set.count}}</span>
                           </button>
                         </div>
-                        <div class="d-flex-inline bg-dark bg-opacity-75 text-white">현재인원 {{ registration.count|add:1 }}</div>
+                        <div class="d-flex-inline bg-dark bg-opacity-75 text-white">현재인원 {{ registration_count.count|add:1 }}</div>
                     </div>
                     <div class="text-white d-flex-inline text-center">
                         <div>
@@ -32,8 +32,10 @@
                     </div>
                     {% if user.id == activity.master_id %}
                         <button class="rounded w-75 btn btn-dark mb-5 disabled">신청완료</button>
-                    {% elif current_regist %}
+                    {% elif user.id in registration_user_id_set %}
                         <a href="{% url "activities:delete_regist" activity.pk %}" class="rounded w-75 btn btn-danger mb-5">신청취소</a>
+                    {% elif current_regist %}
+                        <button class="rounded w-75 btn btn-dark mb-5 disabled">이미 신청하셨습니다</button>
                     {% else %}
                         <a href="{% url "activities:regist" activity.pk %}" class="rounded w-75 btn btn-primary mb-5">신청하기</a>
                     {% endif %}

@@ -17,6 +17,13 @@ class ActivityListView(ListView):
     ordering = "id"
     context_object_name = "activities"
 
+    def get(self, request, *args, **kwargs):
+        activities_qs = self.get_queryset()
+        regists_qs = [Registration.objects.filter(activity_regist_id=activity.pk).count() for activity in activities_qs]
+        activities_regists = zip(activities_qs,regists_qs)
+        return render(request, "activities/activity_list.html", {'activities_regists': activities_regists})
+
+
 
 class ActivityDetailView(DetailView):
 
@@ -29,7 +36,8 @@ class ActivityDetailView(DetailView):
         activity_pk = self.kwargs['pk']
         current_regist = Registration.objects.filter(user_regist_id=self.request.user.id)
         qs = Registration.objects.filter(activity_regist_id=activity_pk)
-        context_data["registration"] = qs
+        context_data["registration_count"] = qs.count()
+        context_data["registration_user_id_set"] = [i.user_regist_id for i in qs]
         context_data["current_regist"] = bool(current_regist)
         context_data["comment_form"] = CommentForm()
         return context_data
@@ -51,6 +59,7 @@ def delete_regist(request, activity_pk):
     Registration.objects.filter(
         user_regist_id=request.user.id,
         activity_regist_id=activity_pk,).delete()
+    print('>>>>>>>>',Registration.objects.all())
     return redirect(resolve_url("activities:detail", activity_pk))
 
 
