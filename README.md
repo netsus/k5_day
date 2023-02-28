@@ -1,3 +1,20 @@
+## 메인 페이지
+
+<img width="1312" alt="image" src="https://user-images.githubusercontent.com/57648890/221797392-b2fd3ff3-d65c-47b1-ad03-8c2efe9a6f94.png">
+
+
+## 세부 액티비티
+
+<img width="1312" alt="image" src="https://user-images.githubusercontent.com/57648890/221797960-a24ef20e-ea26-461b-b631-06af6387a4a6.png">
+
+
+- 좋아요 기능
+- 댓글 달기, 수정, 삭제
+- 신청하기 기능
+- 신청취소 기능
+
+## 초기 
+
 Pycharm을 이용한 Django Project 초기 셋팅
 
 가상환경 설정 및 django 설치
